@@ -1,9 +1,8 @@
 plugins {
-    kotlin("jvm") version "1.9.21"
+    kotlin("jvm") version "2.3.0"
     id("java-library")
     id("java")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    `maven-publish`
+    id("com.gradleup.shadow") version "9.3.1"
 }
 
 group = "i.mrhua269"
@@ -16,27 +15,14 @@ repositories {
 allprojects {
     apply(plugin = "java")
     apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
-    apply(plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "com.gradleup.shadow")
 
     repositories {
         mavenCentral()
         maven("https://repo.papermc.io/repository/maven-public/")
         maven("https://oss.sonatype.org/content/groups/public/")
-        maven("https://maven.moliatopia.icu/repository/maven-public/")
+        maven("https://repo.menthamc.org/repository/maven-public/")
         maven("https://maven.nostal.ink/repository/maven-snapshots/")
-    }
-
-    publishing {
-        repositories {
-            maven {
-                name = "moliaMavenRepo"
-                url = uri("https://maven.moliatopia.icu/repository/maven-snapshots/")
-
-                credentials.username = System.getenv("MAVEN_REPO_USER")
-                credentials.password = System.getenv("MAVEN_REPO_PASSWORD")
-            }
-        }
     }
 
     tasks {
@@ -47,8 +33,6 @@ allprojects {
             filesMatching("**/plugin.yml") {
                 expand(rootProject.project.properties)
             }
-
-            // Always re-run this task
             outputs.upToDateWhen { false }
         }
     }

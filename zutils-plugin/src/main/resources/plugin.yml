@@ -1,5 +1,5 @@
 name: zutils-plugin
 version: '${version}'
 main: i.mrhua269.zutilsplugin.ZUtils
-api-version: '1.19'
+api-version: '1.21'
 folia-supported: true

@@ -15,7 +15,7 @@ public class FoliaTeleporterImpl implements Teleporter {
         final CompletableFuture<Boolean> result = new CompletableFuture<>();
 
         entity.getScheduler().execute(plugin, () -> {
-            entity.teleportAsync(loc, cause).thenAccept(result::complete); //Force run on the scheduler of entity
+            entity.teleportAsync(loc, cause).thenAccept(result::complete);
         },() -> result.complete(Boolean.FALSE),1L);
 
         return result;
@@ -26,7 +26,7 @@ public class FoliaTeleporterImpl implements Teleporter {
         final CompletableFuture<Boolean> result = new CompletableFuture<>();
 
         entity.getScheduler().execute(plugin, () -> {
-            entity.teleportAsync(loc).thenAccept(result::complete); //Force run on the scheduler of entity
+            entity.teleportAsync(loc).thenAccept(result::complete);
         },() -> result.complete(Boolean.FALSE),1L);
 
         return result;
